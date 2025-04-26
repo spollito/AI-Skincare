@@ -1,143 +1,258 @@
-
-/* Base styles and reset */
+/* --- GENERAL RESET --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+  }
 
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    min-height: 100vh;
+  body, html {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    background: #fff;
+  }
+
+  /* --- BACKGROUND SHIMMER --- */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 192, 203, 0.1) 50%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    animation: shimmer 10s infinite alternate;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-20%) translateY(-20%); }
+    100% { transform: translateX(20%) translateY(20%); }
+  }
+
+  /* --- NAVBAR --- */
+  .navbar {
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .logo {
     display: flex;
     align-items: center;
-    justify-content: center;
-}
+    font-size: 24px;
+    font-weight: bold;
+  }
 
-.container {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-}
+  .logo-img {
+    width: 40px;
+    margin-right: 10px;
+  }
 
-/* Section styles */
-section {
-    background: white;
-    border-radius: 10px;
-    padding: 2rem;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.hidden {
-    display: none;
-    opacity: 0;
-}
-
-.active {
-    display: block;
-    opacity: 1;
-}
-
-/* Splash page styles */
-.splash-content {
-    text-align: center;
-    padding: 2rem 0;
-}
-
-.splash-content h1 {
-    color: #333;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-}
-
-.splash-content p {
-    color: #666;
-    margin-bottom: 2rem;
-}
-
-/* Button styles */
-.button-group {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.btn {
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.primary {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.primary:hover {
-    background-color: #45a049;
-}
-
-.secondary {
-    background-color: #fff;
-    color: #4CAF50;
-    border: 2px solid #4CAF50;
-}
-
-.secondary:hover {
-    background-color: #f8f8f8;
-}
-
-/* Form styles */
-.form-container {
-    width: 100%;
-}
-
-.form-container h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 1.5rem;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #666;
-}
-
-input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-input:focus {
-    outline: none;
-    border-color: #4CAF50;
-}
-
-.form-footer {
-    text-align: center;
-    margin-top: 1.5rem;
-    color: #666;
-}
-
-.form-footer a {
-    color: #4CAF50;
+  .nav-links a {
+    margin: 0 15px;
     text-decoration: none;
-}
+    color: #333;
+    font-weight: 500;
+  }
 
-.form-footer a:hover {
+  /* --- HERO SECTION --- */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 100px;
+    position: relative;
+    min-height: 100vh;
+    z-index: 2;
+  }
+
+  .hero-text {
+    max-width: 500px;
+  }
+
+  .hero-text h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+
+  .hero-text p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  .btn {
+    background-color: #ff9aa2;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #ff758f;
+  }
+
+  /* --- HERO IMAGES --- */
+  .hero-images {
+    position: relative;
+  }
+
+  .model-img {
+    width: 400px;
+    border-radius: 20px;
+    animation: fadeIn 2s ease forwards;
+  }
+
+  .pink-flower {
+    position: absolute;
+    top: -50px;
+    right: -60px;
+    width: 200px;
+    z-index: 1;
+  }
+
+  /* --- FLOWERS AT CORNERS --- */
+  .white-flowers-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 180px;
+    z-index: 1;
+  }
+
+  .white-flowers-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 180px;
+    z-index: 1;
+  }
+
+  /* --- ANIMATIONS --- */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* --- OVERLAY BACKGROUND --- */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 998;
+  }
+
+  /* --- LOGIN MODAL CENTERED --- */
+  .login-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    width: 350px;
+    max-width: 90%;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+  }
+
+  /* Active classes */
+  .login-modal.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%) scale(1);
+    animation: popIn 0.5s ease;
+  }
+
+  .overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* --- LOGIN CONTENT --- */
+  .login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .login-content h2 {
+    margin-bottom: 30px;
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  .login-content input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+  .login-content .btn {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .login-content p {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .login-content a {
+    color: #000;
     text-decoration: underline;
-}
+    font-weight: 500;
+  }
+
+  /* --- CLOSE BUTTON --- */
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  /* --- BOUNCE POP IN ANIMATION FOR MODAL --- */
+  @keyframes popIn {
+    0% {
+      transform: translate(-50%, -50%) scale(0.7);
+      opacity: 0;
+    }
+    60% {
+      transform: translate(-50%, -50%) scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
