@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Skincare Elegance - Analysis</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/dashboard.css">
+    <link rel="stylesheet" href="../static/analysis.css">
+</head>
+<body>
+
+<!-- White flowers floating (keeping the design elements consistent) -->
+<img src="path-to-your-white-flowers.png" alt="White Flowers Left" class="white-flowers-left">
+<img src="path-to-your-white-flowers.png" alt="White Flowers Right" class="white-flowers-right">
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <img src="path-to-your-logo.png" alt="Logo" class="logo-img">
+        Skincare Elegance
+    </div>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/analysis" class="active">Analysis</a>
+        <a href="#">Products</a>
+        <a href="#">Recommendations</a>
+        <div class="user-profile">
+            <img src="" alt="Profile" class="profile-image">
+        </div>
+    </div>
+</nav>
+
+<div class="analysis-container">
+    <h1>Skin Analysis</h1>
+    <p class="subtitle">Upload a selfie to get a detailed analysis of your skin conditions</p>
+
+    <!-- Image Upload Section -->
+    <div class="upload-section">
+        <div class="upload-area" id="upload-area">
+            <img src="/static/images/ai-image.jpg" alt="Upload Icon" id="upload-icon">
+            <p id="upload-text">Drag and drop your image here or click to browse</p>
+            <div id="image-preview" class="hidden"></div>
+            <input type="file" id="file-input" accept="image/*" hidden>
+        </div>
+        <button class="btn primary-btn" id="analyze-btn" disabled>Get Analysis</button>
+    </div>
+
+    <!-- Results Section (initially hidden) -->
+    <div class="results-section hidden" id="results-section">
+        <h2>Analysis Results</h2>
+        <div class="results-content">
+            <!-- Results will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Previous Analyses Section -->
+    <div class="previous-analyses">
+        <h2>Previous Analyses</h2>
+        <div class="analyses-grid" id="analyses-grid">
+            <!-- Empty state message -->
+            <div class="empty-analyses" id="empty-analyses">
+                <p>You haven't performed any skin analyses yet.</p>
+            </div>
+
+            <!-- Previous analyses will be displayed here -->
+            <!-- Example format:
+            <div class="analysis-card">
+              <img src="path-to-image.jpg" alt="Analysis Image">
+              <div class="analysis-info">
+                <span class="analysis-date">May 15, 2023</span>
+                <button class="btn secondary-btn view-btn">View Details</button>
+              </div>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
+<script src="../static/app.js"></script>
+<script src="../static/analysis.js"></script>
+
+</body>
+</html>

@@ -20,7 +20,7 @@
   </div>
   <div class="nav-links">
     <a href="/dashboard">Dashboard</a>
-    <a href="#">Analysis</a>
+    <a href="/analysis">Analysis</a>
     <a href="#">Products</a>
     <a href="#">Recommendations</a>
     <a href="#" id="signOutLink" style="margin-left: 15px;">Sign Out</a> <!-- Added Sign Out Link -->
@@ -40,8 +40,7 @@
 
   <!-- Feature Cards -->
   <div class="feature-cards">
-    <div class="card">
-      <img src="/static/images/skin-analysis.png" alt="Skin Analysis" class="analysis-model-img">
+
       <h3>Skin Analysis</h3>
       <p>Upload a selfie to get a detailed analysis of your skin conditions and concerns</p>
     </div>
@@ -66,7 +65,7 @@
     <!-- Placeholder for when no analyses are available -->
     <div class="empty-analysis">
       <p>You haven't performed any skin analyses yet. Start by uploading a selfie!</p>
-      <button class="btn">New Analysis</button>
+      <button class="btn" id="new-analysis-btn">New Analysis</button>
     </div>
 
     <!-- This section will be populated with actual analyses once available
