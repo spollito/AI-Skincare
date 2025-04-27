@@ -8,7 +8,6 @@
 </head>
 <body>
 
-
 <!-- Navbar -->
 <nav class="navbar">
     <div class="logo">
@@ -43,22 +42,32 @@
     <div class="login-content">
         <span class="close-btn" id="closeModal">&times;</span>
         <h2>Welcome Back</h2>
-        <input type="text" placeholder="Email">
-        <input type="password" placeholder="Password">
+        <label><input type="text" placeholder="Email"></label>
+        <label>
+            <input type="password" placeholder="Password">
+        </label>
         <button class="btn">Login</button>
         <p>Don't have an account? <a href="#" id="signUpLink">Sign Up</a></p>
     </div>
 </div>
 
-<!-- Centered Sign Up Modal -->
+<!-- Centered Sign-Up Modal -->
 <div class="login-modal" id="signUpModal">
     <div class="login-content">
         <span class="close-btn" id="closeSignUpModal">&times;</span>
         <h2>Create Account</h2>
-        <input type="text" placeholder="Name">
-        <input type="text" placeholder="Email">
-        <input type="password" placeholder="Password">
-        <input type="password" placeholder="Confirm Password">
+        <label>
+            <input type="text" placeholder="Name">
+        </label>
+        <label>
+            <input type="text" placeholder="Email">
+        </label>
+        <label>
+            <input type="password" placeholder="Password">
+        </label>
+        <label>
+            <input type="password" placeholder="Confirm Password">
+        </label>
         <button class="btn">Sign Up</button>
         <p>Already have an account? <a href="#" id="loginLink">Login</a></p>
     </div>
