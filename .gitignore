@@ -31,3 +31,26 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Application properties files
+application.properties
+application-*.properties
+*.properties.local
+*.properties.dev
+*.properties.prod
+
+
+# Firebase configuration files
+firebase-config.js
+*firebase*config*.js
+firebase.json
+
+
+# Environment variables
+.env
+.env.*
+
+# Log files
+*.log
+logs/
+

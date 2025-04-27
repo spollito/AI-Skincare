@@ -56,13 +56,14 @@
 
     <!-- Image Upload Section -->
     <div class="upload-section">
-        <div class="upload-area" id="upload-area">
-            <img src="/static/images/ai-image.jpg" alt="Upload Icon" id="upload-icon">
-            <p id="upload-text">Drag and drop your image here or click to browse</p>
-            <div id="image-preview" class="hidden"></div>
-            <input type="file" id="file-input" accept="image/*" hidden>
-        </div>
-        <button class="btn primary-btn" id="analyze-btn" disabled>Get Analysis</button>
+        <form id="skin-analysis-form" enctype="multipart/form-data">
+            <div class="upload-area" id="upload-area">
+                <img src="/static/images/ai-image.jpg" alt="Upload Icon" id="upload-icon">
+                <p id="upload-text">Drag and drop your image here or click to browse</p>
+                <input type="file" id="file-input" accept="image/*" name="image" required style="display: none;">
+            </div>
+            <button type="submit" class="btn primary-btn" id="analyze-btn" disabled>Get Analysis</button>
+        </form>
     </div>
 
     <!-- Results Section (initially hidden) -->
