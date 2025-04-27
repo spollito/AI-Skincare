@@ -53,3 +53,79 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+
+
+// Create flowing flower petals
+document.addEventListener('DOMContentLoaded', function() {
+  // Get the logo width to position petals after it
+  const logo = document.querySelector('.logo');
+  const logoWidth = logo.offsetWidth;
+  const petalContainer = document.querySelector('.flower-petals-container');
+
+  // Set the container position based on the logo width
+  petalContainer.style.left = (logoWidth + 20) + 'px'; // 20px buffer
+  petalContainer.style.width = `calc(100% - ${logoWidth + 20}px)`;
+
+  // Create 12 petals with varied properties
+  for (let i = 0; i < 12; i++) {
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+
+    // Randomize properties for natural look
+    const size = Math.random() * 10 + 15; // 15-25px
+    const startPosition = Math.random() * 70 + 10; // 10-80% from top
+    const delay = Math.random() * 8; // 0-8s delay
+    const duration = Math.random() * 5 + 10; // 10-15s animation
+    const opacity = Math.random() * 0.3 + 0.2; // 0.2-0.5 opacity
+
+    // Apply custom styling
+    petal.style.cssText = `
+      position: absolute;
+      top: ${startPosition}%;
+      left: -50px;
+      width: ${size}px;
+      height: ${size}px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="rgba(255, 154, 162, ${opacity})"><path d="M12 2C8 2 4 6 4 10c0 4 8 12 8 12s8-8 8-12c0-4-4-8-8-8zm0 10a2 2 0 100-4 2 2 0 000 4z"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+      animation: petalFloat ${duration}s linear ${delay}s infinite;
+    `;
+
+    petalContainer.appendChild(petal);
+  }
+
+  // Add the keyframe animation to the document
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes petalFloat {
+      0% {
+        left: -50px;
+        transform: rotate(0deg) translateY(0px) scale(0.8);
+        opacity: 0;
+      }
+      5% {
+        opacity: 1;
+      }
+      50% {
+        transform: rotate(180deg) translateY(20px) scale(1);
+      }
+      95% {
+        opacity: 1;
+      }
+      100% {
+        left: calc(100% + 50px);
+        transform: rotate(360deg) translateY(0px) scale(0.8);
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+});
+
+
+
+
