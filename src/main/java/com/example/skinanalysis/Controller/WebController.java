@@ -10,4 +10,11 @@ public class WebController {
     public String dashboard() {
         return "dashboard";
     }
+
+
+    @GetMapping("/analysis")
+    public String analysis() {return "analysis";}
 }
+
+
+

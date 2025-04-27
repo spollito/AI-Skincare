@@ -1,4 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+// Navigate to analysis page when "New Analysis" button is clicked
+    const analysisBtn = document.querySelector('.empty-analysis .btn');
+    if (analysisBtn) {
+        analysisBtn.addEventListener('click', function() {
+            // Navigate to the analysis page
+            window.location.href = '/analysis';
+        });
+    }
+
+    // Make the Skin Analysis card clickable
+        const skinAnalysisCard = document.querySelector('.card:nth-child(1)');
+        if (skinAnalysisCard) {
+            skinAnalysisCard.style.cursor = 'pointer';
+            skinAnalysisCard.addEventListener('click', function() {
+                // Navigate to the analysis page
+                window.location.href = '/analysis';
+            });
+        }
+
+
     // Add animated loader to "New Analysis" button when clicked
     const analysisBtn = document.querySelector('.empty-analysis .btn');
     if (analysisBtn) {
