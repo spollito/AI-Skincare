@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Skincare Elegance - Products</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/dashboard.css">
+    <link rel="stylesheet" href="../static/products.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Profile Picture Selection Modal -->
+<div class="login-modal" id="profilePictureModal">
+    <div class="login-content">
+        <span class="close-btn" id="closeProfilePictureModal">&times;</span>
+        <h2>Choose Your Profile Picture</h2>
+        <div class="avatar-grid">
+            <!-- Avatars will be added dynamically via JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <!-- Flower petals container -->
+    <div class="flower-petals-container"></div>
+
+    <div class="logo">
+        <img src="/static/images/logo.png" alt="Logo" class="logo-img">
+        <span>Skincare Elegance</span>
+    </div>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/analysis">Analysis</a>
+        <a href="/products" class="active">Products</a>
+        <a href="/routine">Routine</a>
+        <a href="#" id="signOutLink">Sign Out</a>
+        <div class="user-profile">
+            <img src="" alt="Profile" class="profile-image">
+        </div>
+    </div>
+</nav>
+
+<div class="products-container">
+    <!-- Header Section -->
+    <div class="products-header">
+        <h1>Recommended Products</h1>
+        <p>Discover skincare solutions tailored for your unique skin needs</p>
+    </div>
+
+    <!-- Category Navigation -->
+    <div class="category-nav">
+        <button class="category-btn active" data-category="all">All Products</button>
+        <button class="category-btn" data-category="spf">SPF</button>
+        <button class="category-btn" data-category="cleansers">Cleansers</button>
+        <button class="category-btn" data-category="moisturizers">Moisturizers</button>
+        <button class="category-btn" data-category="eyecreams">Eye Creams</button>
+        <button class="category-btn" data-category="patches">Pimple Patches</button>
+        <button class="category-btn" data-category="serums">Serums</button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid">
+        <!-- SPF Products -->
+        <div class="product-card" data-category="spf">
+            <div class="product-image">
+                <img src="/static/images/spf-bottle.png" alt="Sunscreen SPF 50">
+                <div class="product-tag">Bestseller</div>
+            </div>
+            <div class="product-info">
+                <h3>Mineral Sunscreen SPF 50</h3>
+                <p class="product-description">Lightweight, broad-spectrum protection with zinc oxide.</p>
+                <div class="product-details">
+                    <p class="product-price">$28.99</p>
+                    <button class="add-to-cart">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="spf">
+            <div class="product-image">
+                <img src="/static/images/spf-bottle-2.png" alt="Tinted Sunscreen">
+            </div>
+            <div class="product-info">
+                <h3>Tinted Sunscreen SPF 40</h3>
+                <p class="product-description">Natural coverage with sun protection for all skin tones.</p>
+                <div class="product-details">
+                    <p class="product-price">$32.50</p>
+                    <button class="add-to-cart">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cleansers -->
+        <div class="product-card" data-category="cleansers">
+            <div class="product-image">
+                <img src="/static/images/clean-bottle.png" alt="Gentle Cleanser">
+                <div class="product-tag">New</div>
+            </div>
+            <div class="product-info">
+                <h3>Gentle Foaming Cleanser</h3>
+                <p class="product-description">pH-balanced cleanser for sensitive skin.</p>
+                <div class="product-details">
+                    <p class="product-price">$24.00</p>
+                    <button class="add-to-cart">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="cleansers">
+            <div class="product-image">
+                <img src="/static/images/clean-bottle-2.png" alt="Exfoliating Cleanser">
+            </div>
+            <div class="product-info">
+                <h3>Exfoliating Gel Cleanser</h3>
+                <p class="product-description">Gentle exfoliation with papaya enzymes.</p>
+                <div class="product-details">
+                    <p class="product-price">$26.50</p>
+                    <button class="add-to-cart">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Moisturizers -->
+        <div class="product-card" data-category="moisturizers">
+            <div class="product-image">
+                <img src="/static/images/moister.png" alt="Hydrating Moisturizer">
+                <div class="product-tag">Popular</div>
+            </div>
+            <div class="product-info">
+                <h3>Ultra Hydrating Gel Cream</h3>
+                <p class="product-description">Lightweight hydration with hyaluronic acid.</p>
+                <div class="product-details">
+                    <p class="product-price">$36.00</p>
+                    <button class="add-to-cart">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="moisturizers">
+            <div class="product-image">
+                <img src="/static/images/night-cream.png" alt="Night Cream">
+            </div>
+            <div class="product-info">
+                <h3>Nourishing Night Cream</h3>
+                <p class="product-description">Rich overnight repair with ceramides and peptides.</p>
+                <div class="product-details">
+                    <p class="product-price">$42.00</p>
+                    <button class="add-to-cart">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Eye Creams -->
+        <div class="product-card" data-category="eyecreams">
+            <div class="product-image">
+                <img src="/static/images/eye-cream.png" alt="Eye Cream">
+            </div>
+            <div class="product-info">
+                <h3>Revitalizing Eye Cream</h3>
+                <p class="product-description">Reduces dark circles and puffiness with caffeine.</p>
+                <div class="product-details">
+                    <p class="product-price">$38.00</p>
+                    <button class="add-to-cart">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pimple Patches -->
+        <div class="product-card" data-category="patches">
+            <div class="product-image">
+                <img src="/static/images/eye-patcg.png" alt="Acne Patches">
+                <div class="product-tag">Bestseller</div>
+            </div>
+            <div class="product-info">
+                <h3>Invisible Acne Patches</h3>
+                <p class="product-description">Overnight spot treatment with hydrocolloid technology.</p>
+                <div class="product-details">
+                    <p class="product-price">$18.99</p>
+                    <button class="add-to-cart">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Serums -->
+        <div class="product-card" data-category="serums">
+            <div class="product-image">
+                <img src="/static/images/vitaminC.png" alt="Vitamin C Serum">
+            </div>
+            <div class="product-info">
+                <h3>Brightening Vitamin C Serum</h3>
+                <p class="product-description">Antioxidant formula for radiant, even-toned skin.</p>
+                <div class="product-details">
+                    <p class="product-price">$45.00</p>
+                    <button class="add-to-cart">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" data-category="serums">
+            <div class="product-image">
+                <img src="/static/images/serummmm.png" alt="Niacinamide Serum">
+                <div class="product-tag">New</div>
+            </div>
+            <div class="product-info">
+                <h3>Niacinamide + Zinc Serum</h3>
+                <p class="product-description">Balances oil production and minimizes pores.</p>
+                <div class="product-details">
+                    <p class="product-price">$38.00</p>
+                    <button class="add-to-cart">View Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Personalized Recommendations Section -->
+    <div class="personalized-recommendations">
+        <h2>Your Personalized Recommendations</h2>
+        <p>Based on your skin profile, we recommend these products for your routine:</p>
+
+        <div class="recommendation-steps">
+            <div class="recommendation-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Morning Cleanser</h3>
+                    <p>Gentle Foaming Cleanser</p>
+                    <button class="view-product-btn">View Product</button>
+                </div>
+            </div>
+
+            <div class="recommendation-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Daily Serum</h3>
+                    <p>Brightening Vitamin C Serum</p>
+                    <button class="view-product-btn">View Product</button>
+                </div>
+            </div>
+
+            <div class="recommendation-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Moisturizer</h3>
+                    <p>Ultra Hydrating Gel Cream</p>
+                    <button class="view-product-btn">View Product</button>
+                </div>
+            </div>
+
+            <div class="recommendation-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Sun Protection</h3>
+                    <p>Mineral Sunscreen SPF 50</p>
+                    <button class="view-product-btn">View Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+<script src="../static/firebase-config.js"></script>
+
+<!-- Load application scripts -->
+<script src="../static/app.js"></script>
+<script src="../static/products.js"></script>
+
+</body>
+</html>

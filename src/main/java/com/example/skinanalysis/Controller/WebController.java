@@ -11,14 +11,14 @@ public class WebController {
         return "dashboard";
     }
 
-
     @GetMapping("/analysis")
     public String analysis() {return "analysis";}
 
+    @GetMapping("/products")
+    public String products() {return "products";}
+
     @GetMapping("/routine")
-    public String routine() {
-        return "routine";
-    }
+    public String routine() {return "routine";}
 }
 
 
