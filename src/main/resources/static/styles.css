@@ -341,19 +341,65 @@ html {
     box-shadow: 0 0 15px rgba(255, 117, 143, 0.4);
   }
 }
+/* --- OVERLAY BACKGROUND --- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /* Ensure semi-transparent background */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, backdrop-filter 0.4s ease; /* Add backdrop-filter transition */
+  z-index: 998;
+  /* Remove backdrop-filter from here if you want it only when active */
+}
 
-.login-modal.active {
-  animation: glowing 2s infinite; /* Add glowing effect */
+/* Active classes */
+/* ... other active classes ... */
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+  backdrop-filter: blur(5px); /* Apply blur to the area behind the overlay */
+  -webkit-backdrop-filter: blur(5px); /* Add prefix for Safari compatibility */
 }
 
 /* --- BLURRY BACKGROUND EFFECT --- */
+/* Remove these rules as we are now using backdrop-filter on the overlay */
+/*
 body {
   transition: filter 0.3s ease;
 }
 
 body.modal-open {
-  filter: blur(5px); /* Add blur effect when modal is active */
+  filter: blur(5px);
 }
+*/
+
+/* --- GLOW ANIMATION FOR THE LOGIN MODAL --- */
+/* Keep the rest of your CSS, including the .login-modal.active glow animation */
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 117, 143, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 117, 143, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 117, 143, 0.4);
+  }
+}
+
+/* Ensure the animation is still applied when active */
+.login-modal.active {
+  /* The transform, opacity, and pointer-events are already handled by .active */
+  animation: popIn 0.5s ease, glowing 2s infinite 0.5s; /* Chain animations, start glowing after popIn */
+}
+
+
+/* ... rest of your styles.css ... */
 
 /* Add these animations to your existing styles.css file */
 

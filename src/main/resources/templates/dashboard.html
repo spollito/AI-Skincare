@@ -12,6 +12,7 @@
 
 
 <!-- Navbar -->
+<!-- Navbar -->
 <nav class="navbar">
   <div class="logo">
     <img src="/static/images/logo.png" alt="Logo" class="logo-img">
@@ -22,8 +23,10 @@
     <a href="#">Analysis</a>
     <a href="#">Products</a>
     <a href="#">Recommendations</a>
+    <a href="#" id="signOutLink" style="margin-left: 15px;">Sign Out</a> <!-- Added Sign Out Link -->
     <div class="user-profile">
       <img src="path-to-default-avatar.jpg" alt="Profile" class="profile-image">
+      <!-- Maybe add user name here later -->
     </div>
   </div>
 </nav>
@@ -79,8 +82,20 @@
   </div>
 </div>
 
+<!-- index.html -->
+<!-- ... -->
+<!-- Firebase SDK -->
+<!-- ADD FIREBASE SDKs AND CONFIG HERE -->
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+<script src="../static/firebase-config.js"></script> <!-- Ensure path is correct relative to dashboard.html -->
+
+<!-- Load your application scripts AFTER Firebase -->
 <script src="../static/app.js"></script>
-<script src="../static/dashboard.js"></script>
+<script src="../static/dashboard.js"></script> <!-- If dashboard.js needs Firebase, keep it after config -->
+
+</body>
+</html>
 
 </body>
 </html>
