@@ -12,6 +12,9 @@
     background: #fff;
   }
 
+html {
+  scroll-behavior: smooth;
+}
 
 
 
@@ -57,7 +60,8 @@
   }
 
   .hero-text {
-    max-width: 500px;
+    opacity: 0;
+    animation: heroFadeIn 1.5s ease 0.5s forwards;
   }
 
   .hero-text h1 {
@@ -220,3 +224,58 @@
       transform: translate(-50%, -50%) scale(1);
     }
   }
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.typing-effect {
+  overflow: hidden; /* Ensures the text stays within bounds */
+  white-space: nowrap; /* Prevent text wrapping */
+  border-right: 2px solid #000; /* Simulates the blinking cursor */
+  animation: typing 4s steps(20, end), blink-caret 0.5s step-end infinite;
+}
+
+/* Typing effect */
+@keyframes typing {
+  from { width: 0; } /* Text starts with no width */
+  to { width: 100%; } /* Text expands to full width */
+}
+
+/* Blinking cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent; } /* Cursor disappears */
+  50% { border-color: black; } /* Cursor reappears */
+}
+
+.typing-effect {
+  overflow: hidden; /* Prevent text from overflowing */
+  white-space: nowrap; /* Keep text on one line */
+  border-right: 2px solid #000; /* Blinking cursor effect */
+  animation: typing 4s steps(20, end), blink-caret 0.5s step-end 4 alternate, hide-caret 4s forwards;
+}
+
+/* Typing effect for the text */
+@keyframes typing {
+  from { width: 0; } /* Start with no text */
+  to { width: 100%; } /* Reveal full text */
+}
+
+/* Blinking caret effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent; } /* Cursor disappears */
+  50% { border-color: black; } /* Cursor appears */
+}
+
+/* Hides blinking caret after typing */
+@keyframes hide-caret {
+  to { border-color: transparent; }
+}
+
+
