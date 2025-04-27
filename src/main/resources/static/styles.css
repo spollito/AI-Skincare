@@ -9,8 +9,38 @@
     height: 100%;
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
-    background: #fff;
+    background: linear-gradient(135deg, #f8f8f8, #fae3e3, #d8d6d6, #fae6dd);
+    background-size: 400% 400%;
+    animation: gradientBackground 15s ease infinite;
+
   }
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Adding a subtle overlay texture */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="rgba(255,200,200,0.03)" stroke-width="0.5"/></svg>');
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: -1;
+}
+
 
 html {
   scroll-behavior: smooth;
@@ -99,14 +129,23 @@ html {
 }
 
 
-  .model-img {
-    width: 400px;
-    border-radius: 20px;
-    animation: fadeIn 2s ease forwards;
-    max-width: 100%;
-    height: auto;
 
+.model-img {
+  width: 400px;
+  border-radius: 20px;
+  animation: fadeIn 2s ease forwards, bounce 4s ease-in-out infinite 2s;
+  max-width: 100%;
+  height: auto;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
   }
+  50% {
+    transform: translateY(-15px);
+  }
+}
 
 
 
@@ -252,7 +291,7 @@ html {
   right: 0;
   width: 100%;
   height: 100%;
-  background: white; /* Same color as your background */
+  background:  #fae6dd; /* Match your background gradient */
   border-left: 2px solid black; /* The cursor */
   animation:
           typing 3s steps(19, end) forwards,  /* 19 characters in "Elegance Redefined." */
@@ -302,16 +341,204 @@ html {
     box-shadow: 0 0 15px rgba(255, 117, 143, 0.4);
   }
 }
+/* --- OVERLAY BACKGROUND --- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5); /* Ensure semi-transparent background */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, backdrop-filter 0.4s ease; /* Add backdrop-filter transition */
+  z-index: 998;
+  /* Remove backdrop-filter from here if you want it only when active */
+}
 
-.login-modal.active {
-  animation: glowing 2s infinite; /* Add glowing effect */
+/* Active classes */
+/* ... other active classes ... */
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+  backdrop-filter: blur(5px); /* Apply blur to the area behind the overlay */
+  -webkit-backdrop-filter: blur(5px); /* Add prefix for Safari compatibility */
 }
 
 /* --- BLURRY BACKGROUND EFFECT --- */
+/* Remove these rules as we are now using backdrop-filter on the overlay */
+/*
 body {
   transition: filter 0.3s ease;
 }
 
 body.modal-open {
-  filter: blur(5px); /* Add blur effect when modal is active */
+  filter: blur(5px);
 }
+*/
+
+/* --- GLOW ANIMATION FOR THE LOGIN MODAL --- */
+/* Keep the rest of your CSS, including the .login-modal.active glow animation */
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 117, 143, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 117, 143, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 117, 143, 0.4);
+  }
+}
+
+/* Ensure the animation is still applied when active */
+.login-modal.active {
+  /* The transform, opacity, and pointer-events are already handled by .active */
+  animation: popIn 0.5s ease, glowing 2s infinite 0.5s; /* Chain animations, start glowing after popIn */
+}
+
+
+/* ... rest of your styles.css ... */
+
+/* Add these animations to your existing styles.css file */
+
+/* Logo image animation - subtle bounce and fade in */
+.logo-img {
+  width: 40px;
+  margin-right: 10px;
+  animation: logoEntrance 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.9);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(3px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* App name text animation - gentle fade in with soft glow */
+.logo span {
+  position: relative;
+  opacity: 0;
+  animation: appNameFadeIn 1.5s ease 0.3s forwards;
+}
+
+@keyframes appNameFadeIn {
+  0% {
+    opacity: 0;
+    text-shadow: none;
+    transform: translateX(-5px);
+  }
+  70% {
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(255, 154, 162, 0.6);
+    transform: translateX(2px);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 5px rgba(255, 154, 162, 0.3);
+    transform: translateX(0);
+  }
+}
+
+/* Add subtle hover effect */
+.logo:hover .logo-img {
+  transform: rotate(5deg) scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover span {
+  text-shadow: 0 0 10px rgba(255, 154, 162, 0.7);
+  transition: text-shadow 0.3s ease;
+}
+
+
+/* --- FLOWER PETALS ANIMATION --- */
+.flower-petals-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none; /* Makes sure the petals don't interfere with clicking navbar items */
+  z-index: 1; /* Place behind the navbar content */
+}
+
+/* Create flower petals using pseudo-elements */
+.flower-petals-container::before,
+.flower-petals-container::after {
+  content: "";
+  position: absolute;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="rgba(255, 154, 162, 0.5)"><path d="M12 2C8 2 4 6 4 10c0 4 8 12 8 12s8-8 8-12c0-4-4-8-8-8zm0 10a2 2 0 100-4 2 2 0 000 4z"/></svg>');
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  opacity: 0.6;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Create multiple petals with different animations */
+.flower-petals-container::before {
+  top: 20%;
+  animation-name: petalFlow1;
+}
+
+.flower-petals-container::after {
+  top: 60%;
+  animation-name: petalFlow2;
+  animation-delay: 2s;
+}
+
+/* Add more petals using JavaScript for variety */
+@keyframes petalFlow1 {
+  0% {
+    left: -50px;
+    transform: rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    left: calc(100% + 50px);
+    transform: rotate(360deg) scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes petalFlow2 {
+  0% {
+    left: -30px;
+    transform: rotate(45deg) scale(0.6);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    left: calc(100% + 30px);
+    transform: rotate(405deg) scale(0.8);
+    opacity: 0;
+  }
+}
+
+
