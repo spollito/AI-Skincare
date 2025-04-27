@@ -138,3 +138,15 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 });
+
+// Make the Product Recommendations card clickable
+const productRecommendationsCard = document.querySelector('.card:nth-child(2)');
+if (productRecommendationsCard) {
+    productRecommendationsCard.style.cursor = 'pointer';
+    productRecommendationsCard.addEventListener('click', function(event) {
+        // Prevent event bubbling
+        event.stopPropagation();
+        // Navigate to the products page
+        window.location.href = '/products';
+    });
+}
