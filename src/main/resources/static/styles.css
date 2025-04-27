@@ -290,3 +290,28 @@ html {
     opacity: 0;
   }
 }
+/* --- GLOW ANIMATION FOR THE LOGIN MODAL --- */
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 117, 143, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 117, 143, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 117, 143, 0.4);
+  }
+}
+
+.login-modal.active {
+  animation: glowing 2s infinite; /* Add glowing effect */
+}
+
+/* --- BLURRY BACKGROUND EFFECT --- */
+body {
+  transition: filter 0.3s ease;
+}
+
+body.modal-open {
+  filter: blur(5px); /* Add blur effect when modal is active */
+}
