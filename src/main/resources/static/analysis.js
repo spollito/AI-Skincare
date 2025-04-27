@@ -1,13 +1,22 @@
-// analysis.js
+// analysis.js - CORRECTED VERSION
 document.addEventListener('DOMContentLoaded', function() {
     // Elements
     const uploadArea = document.getElementById('upload-area');
     const fileInput = document.getElementById('file-input');
     const uploadIcon = document.getElementById('upload-icon');
     const uploadText = document.getElementById('upload-text');
-    const imagePreview = document.getElementById('image-preview');
     const analyzeBtn = document.getElementById('analyze-btn');
     const resultsSection = document.getElementById('results-section');
+    const skinAnalysisForm = document.getElementById('skin-analysis-form');
+
+    // Check if the image preview element exists, if not create it
+    let imagePreview = document.getElementById('image-preview');
+    if (!imagePreview) {
+        imagePreview = document.createElement('div');
+        imagePreview.id = 'image-preview';
+        imagePreview.className = 'hidden';
+        uploadArea.appendChild(imagePreview);
+    }
 
     // Handle click on upload area
     uploadArea.addEventListener('click', function() {
@@ -87,52 +96,122 @@ document.addEventListener('DOMContentLoaded', function() {
         reader.readAsDataURL(file);
     }
 
-    // Handle analyze button click
-    analyzeBtn.addEventListener('click', function() {
-        // Here you would typically send the image to your backend for analysis
-        // For now, we'll just simulate loading and show a mock result
+    // Handle form submission - SINGLE EVENT HANDLER
+    skinAnalysisForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        if (!fileInput.files.length) {
+            alert("Please upload an image!");
+            return;
+        }
+
+        // Disable button and show loading state
         analyzeBtn.disabled = true;
         analyzeBtn.textContent = 'Analyzing...';
 
-        setTimeout(function() {
-            showResults();
+        try {
+            const formData = new FormData(skinAnalysisForm);
+
+            // Send the image to the backend
+            console.log("Sending request to /analyze endpoint");
+            const response = await fetch('/analyze', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Server error (${response.status}): ${errorText}`);
+            }
+
+            // Get response data
+            const result = await response.text();
+            console.log("Received analysis result");
+
+            // Show results in the UI
+            showResults(result);
+
+            // Add the analyzed image to previous analyses
+            addToPreviousAnalyses();
+
+        } catch (err) {
+            console.error("Analysis error:", err);
+            alert("Failed to analyze the image: " + err.message);
+        } finally {
+            // Reset button state
             analyzeBtn.textContent = 'Get Analysis';
             analyzeBtn.disabled = false;
-
-            // Add the analyzed image to the previous analyses section
-            addToPreviousAnalyses();
-        }, 2000);
+        }
     });
 
     // Show results
-    function showResults() {
+    function showResults(analysisData) {
         resultsSection.classList.remove('hidden');
-        resultsSection.querySelector('.results-content').innerHTML = `
-            <div class="result-item">
-                <h3>Skin Hydration</h3>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 65%"></div>
-                </div>
-                <p>65% - Moderately hydrated</p>
-            </div>
-            <div class="result-item">
-                <h3>Oil Level</h3>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 45%"></div>
-                </div>
-                <p>45% - Normal</p>
-            </div>
-            <div class="result-item">
-                <h3>Sensitivity</h3>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 30%"></div>
-                </div>
-                <p>30% - Low sensitivity</p>
-            </div>
-        `;
+
+        // If the backend returns a formatted HTML or structured data, use it
+        // Otherwise, for this example, we'll create a simple display
+        const resultsContent = resultsSection.querySelector('.results-content');
+
+        try {
+            // Try to parse the data as JSON if it's in JSON format
+            const jsonData = JSON.parse(analysisData);
+            resultsContent.innerHTML = formatJsonResults(jsonData);
+        } catch (e) {
+            // If not JSON, display as text
+            resultsContent.innerHTML = `<div class="result-text">${analysisData}</div>`;
+        }
 
         // Scroll to results
         resultsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Helper function to format JSON results (if your API returns JSON)
+    function formatJsonResults(data) {
+        // This is a placeholder - adjust based on your actual API response structure
+        let html = '';
+
+        // Example format (update based on your actual API response)
+        if (data.skinConditions) {
+            html += `<h3>Skin Conditions</h3>`;
+            data.skinConditions.forEach(condition => {
+                html += `
+                    <div class="result-item">
+                        <h4>${condition.name}</h4>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: ${condition.confidence}%"></div>
+                        </div>
+                        <p>${condition.confidence}% - ${condition.description}</p>
+                    </div>
+                `;
+            });
+        } else {
+            // For demo purposes, create mock results
+            html = `
+                <div class="result-item">
+                    <h3>Skin Hydration</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 65%"></div>
+                    </div>
+                    <p>65% - Moderately hydrated</p>
+                </div>
+                <div class="result-item">
+                    <h3>Oil Level</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 45%"></div>
+                    </div>
+                    <p>45% - Normal</p>
+                </div>
+                <div class="result-item">
+                    <h3>Sensitivity</h3>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 30%"></div>
+                    </div>
+                    <p>30% - Low sensitivity</p>
+                </div>
+            `;
+        }
+
+        return html;
     }
 
     // Add to previous analyses
@@ -169,4 +248,21 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add to grid
         analysesGrid.prepend(card);
     }
+
+    // Handle "New Analysis" button on dashboard
+    const newAnalysisBtn = document.getElementById('new-analysis-btn');
+    if (newAnalysisBtn) {
+        newAnalysisBtn.addEventListener('click', function() {
+            window.location.href = '/analysis';
+        });
+    }
 });
+
+// REMOVE THIS ENTIRE DUPLICATE EVENT HANDLER
+// The following code is a duplicate and should be deleted:
+/*
+document.getElementById('skin-analysis-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    // ... rest of the duplicate code ...
+});
+*/
