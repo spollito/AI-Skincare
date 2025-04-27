@@ -45,26 +45,24 @@
         <input type="text" placeholder="Email">
         <input type="password" placeholder="Password">
         <button class="btn">Login</button>
-        <p>Don't have an account? <a href="#">Sign Up</a></p>
+        <p>Don't have an account? <a href="#" id="signUpLink">Sign Up</a></p>
+    </div>
+</div>
+
+<!-- Centered Sign Up Modal -->
+<div class="login-modal" id="signUpModal">
+    <div class="login-content">
+        <span class="close-btn" id="closeSignUpModal">&times;</span>
+        <h2>Create Account</h2>
+        <input type="text" placeholder="Name">
+        <input type="text" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <input type="password" placeholder="Confirm Password">
+        <button class="btn">Sign Up</button>
+        <p>Already have an account? <a href="#" id="loginLink">Login</a></p>
     </div>
 </div>
 
 <script src="/static/app.js"></script>
 </body>
 </html>
-/* Add a bounce effect when the modal opens */
-@keyframes bounceIn {
-  0% {
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-  60% {
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-.login-modal.active {
-  animation: bounceIn 0.5s ease-out;
-}
