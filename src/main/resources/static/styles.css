@@ -29,7 +29,7 @@
   .logo {
     display: flex;
     align-items: center;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
   }
 
@@ -87,40 +87,25 @@
   }
 
   /* --- HERO IMAGES --- */
-  .hero-images {
-    position: relative;
-  }
+.hero-images {
+  /* Consider updating this to center the single model image */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
   .model-img {
     width: 400px;
     border-radius: 20px;
     animation: fadeIn 2s ease forwards;
+    max-width: 100%;
+    height: auto;
+
   }
 
-  .pink-flower {
-    position: absolute;
-    top: -50px;
-    right: -60px;
-    width: 200px;
-    z-index: -1;
-  }
 
-  /* --- FLOWERS AT CORNERS --- */
-  .white-flowers-left {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 180px;
-    z-index: 1;
-  }
 
-  .white-flowers-right {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 180px;
-    z-index: 1;
-  }
 
   /* --- ANIMATIONS --- */
   @keyframes fadeIn {
