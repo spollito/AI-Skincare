@@ -14,6 +14,11 @@ public class WebController {
 
     @GetMapping("/analysis")
     public String analysis() {return "analysis";}
+
+    @GetMapping("/routine")
+    public String routine() {
+        return "routine";
+    }
 }
 
 

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Skincare Elegance - Routine Assessment</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/dashboard.css">
+    <link rel="stylesheet" href="../static/routine.css">
+    <!-- Add Google Fonts for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Profile Picture Selection Modal -->
+<div class="login-modal" id="profilePictureModal">
+    <div class="login-content">
+        <span class="close-btn" id="closeProfilePictureModal">&times;</span>
+        <h2>Choose Your Profile Picture</h2>
+        <div class="avatar-grid">
+            <!-- Avatars will be added dynamically via JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- Navbar -->
+
+<nav class="navbar">
+    <!-- Flower petals container -->
+    <div class="flower-petals-container"></div>
+    <div class="logo">
+        <img src="../static/images/logo.png" alt="Logo" class="logo-img">
+        <span>Skincare Elegance</span>
+    </div>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/analysis">Analysis</a>
+        <a href="#">Products</a>
+        <a href="/routine" class="active">Routine</a>
+        <a href="#" id="signOutLink">Sign Out</a>
+        <div class="user-profile">
+            <img src="" alt="Profile" class="profile-image">
+        </div>
+    </div>
+</nav>
+
+<div class="routine-container">
+    <div class="routine-header">
+        <h1>Skincare Routine Assessment</h1>
+        <p>Let's evaluate your current skincare habits to provide personalized recommendations</p>
+    </div>
+
+    <div class="routine-form-container">
+        <form id="routineForm">
+            <div class="progress-bar">
+                <div class="progress-step active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Basics</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Products</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Habits</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Basics -->
+            <div class="form-step" id="step1">
+                <h2>Basic Skincare Routine</h2>
+
+                <div class="form-question">
+                    <label>Do you cleanse your face in the morning?</label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="morning_cleanse" value="never"> Never
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="morning_cleanse" value="sometimes"> Sometimes
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="morning_cleanse" value="regularly"> Regularly
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="morning_cleanse" value="always"> Always
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-question">
+                    <label>Do you cleanse your face in the evening?</label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="evening_cleanse" value="never"> Never
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="evening_cleanse" value="sometimes"> Sometimes
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="evening_cleanse" value="regularly"> Regularly
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="evening_cleanse" value="always"> Always
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-question">
+                    <label>Do you use SPF daily?</label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="spf_use" value="never"> Never
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="spf_use" value="sometimes"> Sometimes
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="spf_use" value="regularly"> Regularly
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="spf_use" value="always"> Always
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" class="next-btn" data-next="2">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 2: Products -->
+            <div class="form-step hidden" id="step2">
+                <h2>Products You Use</h2>
+
+                <div class="form-question">
+                    <label>Do you use a moisturizer?</label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="moisturizer" value="never"> Never
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="moisturizer" value="sometimes"> Sometimes
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="moisturizer" value="regularly"> Regularly
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="moisturizer" value="always"> Always
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-question">
+                    <label>Do you use an eye cream?</label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="eye_cream" value="never"> Never
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="eye_cream" value="sometimes"> Sometimes
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="eye_cream" value="regularly"> Regularly
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="eye_cream" value="always"> Always
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-question">
+                    <label>Do you use serums or treatments (Vitamin C, Retinol, etc.)?</label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="serums" value="never"> Never
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="serums" value="sometimes"> Sometimes
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="serums" value="regularly"> Regularly
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="serums" value="always"> Always
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" class="back-btn" data-prev="1"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button type="button" class="next-btn" data-next="3">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 3: Habits -->
+            <div class="form-step hidden" id="step3">
+                <h2>Skincare Habits</h2>
+
+                <div class="form-question">
+                    <label>Do you exfoliate your skin?</label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="exfoliate" value="never"> Never
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="exfoliate" value="once_month"> Once a month
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="exfoliate" value="once_week"> Once a week
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="exfoliate" value="multiple_week"> Multiple times a week
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-question">
+                    <label>Do you use face masks?</label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="face_masks" value="never"> Never
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="face_masks" value="once_month"> Once a month
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="face_masks" value="once_week"> Once a week
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="face_masks" value="multiple_week"> Multiple times a week
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-question">
+                    <label>How much water do you drink daily?</label>
+                    <div class="radio-options">
+                        <label class="radio-label">
+                            <input type="radio" name="water_intake" value="less_4cups"> Less than 4 cups
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="water_intake" value="4_6cups"> 4-6 cups
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="water_intake" value="6_8cups"> 6-8 cups
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="water_intake" value="more_8cups"> More than 8 cups
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" class="back-btn" data-prev="2"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button type="button" id="analyze-btn" class="analyze-btn">
+                        <i class="fas fa-chart-bar"></i> Analyze My Routine
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Results section - initially hidden -->
+    <div class="routine-results hidden" id="routineResults">
+        <h2>Your Routine Assessment</h2>
+
+        <div class="rating-container">
+            <div class="rating-circle">
+                <span class="rating-score">0</span>
+                <span class="rating-max">/100</span>
+            </div>
+            <div class="rating-label">Your Routine Score</div>
+        </div>
+
+        <div class="results-breakdown">
+            <h3>Routine Breakdown</h3>
+            <div class="breakdown-item">
+                <div class="breakdown-header">
+                    <span class="breakdown-title">Cleansing</span>
+                    <span class="breakdown-score">0/10</span>
+                </div>
+                <div class="breakdown-bar">
+                    <div class="breakdown-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="breakdown-item">
+                <div class="breakdown-header">
+                    <span class="breakdown-title">Sun Protection</span>
+                    <span class="breakdown-score">0/10</span>
+                </div>
+                <div class="breakdown-bar">
+                    <div class="breakdown-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="breakdown-item">
+                <div class="breakdown-header">
+                    <span class="breakdown-title">Moisturizing</span>
+                    <span class="breakdown-score">0/10</span>
+                </div>
+                <div class="breakdown-bar">
+                    <div class="breakdown-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="breakdown-item">
+                <div class="breakdown-header">
+                    <span class="breakdown-title">Treatment Products</span>
+                    <span class="breakdown-score">0/10</span>
+                </div>
+                <div class="breakdown-bar">
+                    <div class="breakdown-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="breakdown-item">
+                <div class="breakdown-header">
+                    <span class="breakdown-title">Skincare Habits</span>
+                    <span class="breakdown-score">0/10</span>
+                </div>
+                <div class="breakdown-bar">
+                    <div class="breakdown-fill" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendation-box">
+            <h3><i class="fas fa-lightbulb"></i> Recommendations</h3>
+            <div id="recommendationsList">
+                <!-- Recommendations will be added here -->
+            </div>
+        </div>
+
+        <button class="restart-btn" id="restartBtn">
+            <i class="fas fa-redo"></i> Retake Assessment
+        </button>
+    </div>
+</div>
+
+<script src="../static/app.js"></script>
+<script src="../static/routine.js"></script>
+<script src="../static/dashboard.js"></script>
+</body>
+</html>
