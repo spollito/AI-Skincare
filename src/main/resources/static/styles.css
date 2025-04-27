@@ -5,15 +5,18 @@
     box-sizing: border-box;
   }
 
-  body, html {
-    height: 100%;
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
-    background: linear-gradient(135deg, #f8f8f8, #fae3e3, #d8d6d6, #fae6dd);
-    background-size: 400% 400%;
-    animation: gradientBackground 15s ease infinite;
 
-  }
+body, html {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #f8f8f8, #fae3e3, #d8d6d6, #fae6dd);
+  background-size: 400% 400%;
+  animation: gradientBackground 15s ease infinite;
+  /* Add these properties to ensure the animation is visible */
+  background-attachment: fixed;
+  will-change: background-position;
+}
 
 @keyframes gradientBackground {
   0% {
@@ -48,35 +51,331 @@ html {
 
 
 
-  /* --- NAVBAR --- */
+/* --- MODERN NAVBAR STYLES --- */
+.navbar {
+  width: 100%;
+  padding: 15px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(255, 154, 162, 0.2);
+  transition: all 0.4s ease;
+}
+
+/* Navbar scroll effect - controlled by JavaScript */
+.navbar.scrolled {
+  padding: 10px 50px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Logo styles */
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.logo-img {
+  width: 40px;
+  margin-right: 12px;
+  animation: logoEntrance 1.2s ease forwards;
+  opacity: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo span {
+  position: relative;
+  opacity: 0;
+  animation: appNameFadeIn 1.5s ease 0.3s forwards;
+}
+
+/* Nav links container */
+.nav-links {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Nav link items */
+.nav-links a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  position: relative;
+  padding: 5px 0;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: navLinkFade 0.5s ease forwards;
+  animation-delay: calc(0.1s * var(--i, 1));
+}
+
+/* Animation delays for each nav link */
+.nav-links a:nth-child(1) { --i: 1; }
+.nav-links a:nth-child(2) { --i: 2; }
+.nav-links a:nth-child(3) { --i: 3; }
+.nav-links a:nth-child(4) { --i: 4; }
+.nav-links a:nth-child(5) { --i: 5; }
+
+/* Animated underline effect */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #ff9aa2;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff758f;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* Active link styling */
+.nav-links a.active {
+  color: #ff758f;
+  font-weight: 600;
+}
+
+/* Sign Out link special styling */
+#signOutLink {
+  background: rgba(255, 154, 162, 0.1);
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 154, 162, 0.3);
+  transition: all 0.3s ease;
+}
+
+#signOutLink:hover {
+  background: rgba(255, 154, 162, 0.2);
+  border-color: rgba(255, 154, 162, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 154, 162, 0.2);
+}
+
+#signOutLink:active {
+  transform: translateY(0);
+}
+
+/* User profile image styling */
+.user-profile {
+  margin-left: 20px;
+  position: relative;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 154, 162, 0.3);
+  border-color: #ff9aa2;
+}
+
+/* Animations for navbar elements */
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.9);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(3px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes appNameFadeIn {
+  0% {
+    opacity: 0;
+    text-shadow: none;
+    transform: translateX(-5px);
+  }
+  70% {
+    opacity: 1;
+    text-shadow: 0 0 8px rgba(255, 154, 162, 0.6);
+    transform: translateX(2px);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 5px rgba(255, 154, 162, 0.3);
+    transform: translateX(0);
+  }
+}
+
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover effects for logo */
+.logo:hover .logo-img {
+  transform: rotate(5deg) scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover span {
+  text-shadow: 0 0 10px rgba(255, 154, 162, 0.7);
+  transition: text-shadow 0.3s ease;
+}
+
+/* Mobile menu button (hidden by default, for responsive design) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
   .navbar {
-    width: 100%;
-    padding: 20px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 2;
+    padding: 15px 20px;
   }
 
-  .logo {
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
+  .nav-links {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    height: 100vh;
+    width: 80%;
+    max-width: 300px;
+    background-color: white;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 50px 30px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.4s ease;
+    z-index: 100;
   }
 
-  .logo-img {
-    width: 40px;
-    margin-right: 10px;
+  .nav-links.active {
+    right: 0;
   }
 
   .nav-links a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
+    margin: 15px 0;
+    font-size: 18px;
   }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  .user-profile {
+    margin: 20px 0 0 0;
+  }
+}
+
+/* Enhanced active link styling */
+.nav-links a.active {
+  color: #ff758f !important; /* Ensure text is visible with important flag */
+  font-weight: 600;
+  position: relative;
+}
+
+/* Underline for active link */
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ff758f;
+  transition: width 0.3s ease;
+}
+
+/* Add a subtle glow effect instead of animation */
+.nav-links a.active {
+  text-shadow: 0 0 1px rgba(255, 117, 143, 0.5);
+  box-shadow: 0 5px 10px -5px rgba(255, 117, 143, 0.3);
+  background: rgba(255, 154, 162, 0.1);
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin: 0 10px; /* Adjust margin to maintain spacing */
+}
+
+/* Ensure hover state doesn't override active state */
+.nav-links a.active:hover {
+  color: #ff758f !important;
+}
+
+/* Fix for hover underline to avoid conflict with active state */
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Subtle pulse animation for active link */
+@keyframes activeNavLinkPulse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
 
   /* --- HERO SECTION --- */
   .hero {
@@ -472,7 +771,7 @@ body.modal-open {
   height: 100%;
   overflow: hidden;
   pointer-events: none; /* Makes sure the petals don't interfere with clicking navbar items */
-  z-index: 1; /* Place behind the navbar content */
+  z-index: 0; /* Ensure it's behind the text */
 }
 
 /* Create flower petals using pseudo-elements */
@@ -502,7 +801,18 @@ body.modal-open {
   animation-delay: 2s;
 }
 
-/* Add more petals using JavaScript for variety */
+/* Add JavaScript-generated petals */
+.flower-petal {
+  position: absolute;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="rgba(255, 154, 162, 0.5)"><path d="M12 2C8 2 4 6 4 10c0 4 8 12 8 12s8-8 8-12c0-4-4-8-8-8zm0 10a2 2 0 100-4 2 2 0 000 4z"/></svg>');
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
 @keyframes petalFlow1 {
   0% {
     left: -50px;
@@ -541,4 +851,59 @@ body.modal-open {
   }
 }
 
+@keyframes petalFlow3 {
+  0% {
+    left: -40px;
+    transform: rotate(90deg) scale(0.7);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    left: calc(100% + 40px);
+    transform: rotate(450deg) scale(0.7);
+    opacity: 0;
+  }
+}
+
+
+
+
+/* Avatar selection grid */
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.avatar-option {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: all 0.3s ease;
+  object-fit: cover;
+}
+
+.avatar-option:hover {
+  transform: scale(1.1);
+  border-color: rgba(255, 154, 162, 0.5);
+  box-shadow: 0 5px 15px rgba(255, 154, 162, 0.3);
+}
+
+.avatar-option.selected {
+  border-color: #ff9aa2;
+  box-shadow: 0 5px 15px rgba(255, 154, 162, 0.5);
+}
+
+/* Clickable profile image */
+.profile-image {
+  cursor: pointer;
+}
 

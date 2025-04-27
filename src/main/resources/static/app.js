@@ -291,6 +291,53 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         petalContainer.appendChild(petal);
       }
+      // Add dynamic flower petals to navbar
+      function addDynamicPetals() {
+        const container = document.querySelector('.flower-petals-container');
+        if (!container) return;
+
+        // Create additional petals with JavaScript for more variety
+        const petalCount = 5; // Number of additional petals
+
+        for (let i = 0; i < petalCount; i++) {
+          const petal = document.createElement('div');
+          petal.className = 'flower-petal';
+
+          // Randomize position and animation
+          const topPos = Math.random() * 100; // Random vertical position
+          const delay = Math.random() * 5; // Random delay
+          const duration = 7 + Math.random() * 6; // Random duration between 7-13s
+          const scale = 0.5 + Math.random() * 0.5; // Random scale between 0.5-1
+
+          // Apply styles
+          petal.style.top = `${topPos}%`;
+          petal.style.animationDelay = `${delay}s`;
+          petal.style.animationDuration = `${duration}s`;
+          petal.style.transform = `scale(${scale})`;
+          petal.style.opacity = (0.3 + Math.random() * 0.4).toString(); // Random opacity
+
+          // Randomly choose one of three animations
+          const animations = ['petalFlow1', 'petalFlow2', 'petalFlow3'];
+          const randomAnim = animations[Math.floor(Math.random() * animations.length)];
+          petal.style.animationName = randomAnim;
+
+          // Add to container
+          container.appendChild(petal);
+        }
+      }
+
+// Call this function when the DOM is loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        // Your existing code...
+
+        // Add dynamic petals
+        addDynamicPetals();
+
+        // Set active navigation link
+        setActiveNavLink();
+
+        // More of your existing code...
+      });
 
       if (!document.getElementById('petalFloatKeyframes')) {
         const style = document.createElement('style');
@@ -315,3 +362,179 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
 }); // End DOMContentLoaded
+
+
+// Add navbar functionality for responsive design and scroll effects
+document.addEventListener('DOMContentLoaded', function() {
+  // Navbar scroll effect
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+  });
+
+  // Add mobile menu toggle functionality
+  const navbar = document.querySelector('.navbar');
+  if (navbar && !navbar.querySelector('.menu-toggle')) {
+    // Create mobile menu toggle button
+    const menuToggle = document.createElement('div');
+    menuToggle.className = 'menu-toggle';
+    menuToggle.innerHTML = `
+      <span></span>
+      <span></span>
+      <span></span>
+    `;
+
+    // Insert before the nav-links
+    const navLinks = navbar.querySelector('.nav-links');
+    if (navLinks) {
+      navbar.insertBefore(menuToggle, navLinks);
+
+      // Add event listener
+      menuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navLinks.classList.toggle('active');
+
+        // Prevent body scrolling when menu is open
+        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+      });
+      // Add this to your existing DOMContentLoaded event listener in app.js
+
+// Set active link in navbar based on current page URL
+      function setActiveNavLink() {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        navLinks.forEach(link => {
+          // Remove active class from all links first
+          link.classList.remove('active');
+
+          // Skip the sign out link (we don't want to highlight it)
+          if (link.id === 'signOutLink') return;
+
+          // Get the href attribute and check if it matches the current path
+          const href = link.getAttribute('href');
+          if (href === currentPath) {
+            link.classList.add('active');
+          }
+
+          // Handle special case for root path
+          if (currentPath === '/' && href === '/') {
+            link.classList.add('active');
+          }
+        });
+      }
+
+// Call this function when the page loads
+      setActiveNavLink();
+
+      // Close menu when clicking on a link
+      const links = navLinks.querySelectorAll('a');
+      links.forEach(link => {
+        link.addEventListener('click', function() {
+          menuToggle.classList.remove('active');
+          navLinks.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+  }
+});
+
+
+
+// Array of preset profile pictures
+const profilePictures = [
+  'https://api.dicebear.com/7.x/bottts/svg?seed=1&backgroundColor=ffccd1',
+  'https://api.dicebear.com/7.x/bottts/svg?seed=2&backgroundColor=fae3e3',
+  'https://api.dicebear.com/7.x/bottts/svg?seed=3&backgroundColor=ffaaa7',
+  'https://api.dicebear.com/7.x/adventurer/svg?seed=1&backgroundColor=ffccd1',
+  'https://api.dicebear.com/7.x/adventurer/svg?seed=2&backgroundColor=fae3e3',
+  'https://api.dicebear.com/7.x/adventurer/svg?seed=3&backgroundColor=ffaaa7',
+  'https://api.dicebear.com/7.x/lorelei/svg?seed=1&backgroundColor=ffccd1',
+  'https://api.dicebear.com/7.x/lorelei/svg?seed=2&backgroundColor=fae3e3',
+  'https://api.dicebear.com/7.x/lorelei/svg?seed=3&backgroundColor=ffaaa7'
+];
+
+
+// Function to set up profile picture selection
+function setupProfilePictureSelection() {
+  const profileImage = document.querySelector('.profile-image');
+  const profileModal = document.getElementById('profilePictureModal');
+  const closeProfileModal = document.getElementById('closeProfilePictureModal');
+  const avatarGrid = document.querySelector('.avatar-grid');
+
+  if (!profileImage || !profileModal || !avatarGrid) return;
+
+  // Load saved profile picture from localStorage
+  const savedProfilePic = localStorage.getItem('profilePicture');
+  if (savedProfilePic) {
+    profileImage.src = savedProfilePic;
+  } else {
+    // Set default profile picture
+    profileImage.src = '/static/images/avatars/avatar1.png';
+  }
+
+  // Populate avatar grid
+  profilePictures.forEach(picUrl => {
+    const img = document.createElement('img');
+    img.src = picUrl;
+    img.className = 'avatar-option';
+    if (picUrl === profileImage.src) {
+      img.classList.add('selected');
+    }
+
+    img.addEventListener('click', () => {
+      // Remove selected class from all avatars
+      document.querySelectorAll('.avatar-option').forEach(avatar => {
+        avatar.classList.remove('selected');
+      });
+
+      // Add selected class to clicked avatar
+      img.classList.add('selected');
+
+      // Set the profile image
+      profileImage.src = picUrl;
+
+      // Save selection to localStorage
+      localStorage.setItem('profilePicture', picUrl);
+
+      // Close modal after short delay
+      setTimeout(() => {
+        profileModal.classList.remove('active');
+        document.getElementById('overlay').classList.remove('active');
+      }, 300);
+    });
+
+    avatarGrid.appendChild(img);
+  });
+
+  // Open modal when clicking profile image
+  profileImage.addEventListener('click', () => {
+    profileModal.classList.add('active');
+    document.getElementById('overlay').classList.add('active');
+  });
+
+  // Close modal
+  if (closeProfileModal) {
+    closeProfileModal.addEventListener('click', () => {
+      profileModal.classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
+    });
+  }
+}
+
+// Add this to your existing DOM content loaded event
+document.addEventListener('DOMContentLoaded', function() {
+  // Your existing code...
+
+  // Setup profile picture selection
+  setupProfilePictureSelection();
+
+  // More of your existing code...
+});

@@ -6,30 +6,48 @@
   <title>Skincare Elegance - Dashboard</title>
   <link rel="stylesheet" href="../static/styles.css">
   <link rel="stylesheet" href="../static/dashboard.css">
+  <!-- Add Google Fonts for better typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
 
 
-<!-- Navbar -->
+<!-- Profile Picture Selection Modal -->
+<div class="login-modal" id="profilePictureModal">
+  <div class="login-content">
+    <span class="close-btn" id="closeProfilePictureModal">&times;</span>
+    <h2>Choose Your Profile Picture</h2>
+    <div class="avatar-grid">
+      <!-- Avatars will be added dynamically via JavaScript -->
+    </div>
+  </div>
+</div>
+
 <!-- Navbar -->
 <nav class="navbar">
+  <!-- Flower petals container -->
+  <div class="flower-petals-container"></div>
+
   <div class="logo">
     <img src="/static/images/logo.png" alt="Logo" class="logo-img">
-    Skincare Elegance
+    <span>Skincare Elegance</span>
   </div>
   <div class="nav-links">
     <a href="/dashboard">Dashboard</a>
     <a href="/analysis">Analysis</a>
     <a href="#">Products</a>
-    <a href="#">Recommendations</a>
-    <a href="#" id="signOutLink" style="margin-left: 15px;">Sign Out</a> <!-- Added Sign Out Link -->
+    <a href="#">Routine</a>
+    <a href="#" id="signOutLink">Sign Out</a>
     <div class="user-profile">
-      <img src="path-to-default-avatar.jpg" alt="Profile" class="profile-image">
-      <!-- Maybe add user name here later -->
+      <img src="" alt="Profile" class="profile-image">
     </div>
   </div>
 </nav>
+
 
 <div class="dashboard-container">
   <!-- Welcome Banner -->
@@ -38,9 +56,12 @@
     <p>Let's discover the perfect skincare routine tailored just for you</p>
   </div>
 
+
   <!-- Feature Cards -->
   <div class="feature-cards">
 
+    <div class="card"> <!-- Added missing div tag -->
+      <img src="/static/images/skin-analysis.png" alt="Skin Analysis" class="analysis"> <!-- Added missing image tag -->
       <h3>Skin Analysis</h3>
       <p>Upload a selfie to get a detailed analysis of your skin conditions and concerns</p>
     </div>
@@ -67,17 +88,6 @@
       <p>You haven't performed any skin analyses yet. Start by uploading a selfie!</p>
       <button class="btn" id="new-analysis-btn">New Analysis</button>
     </div>
-
-    <!-- This section will be populated with actual analyses once available
-    <div class="analysis-item">
-        <img src="path-to-sample-analysis.jpg" alt="Analysis">
-        <div class="analysis-details">
-            <h4>Morning Analysis</h4>
-            <p>Hydration: 75% | Sensitivity: Low</p>
-        </div>
-        <span class="analysis-date">Today, 9:30 AM</span>
-    </div>
-    -->
   </div>
 </div>
 

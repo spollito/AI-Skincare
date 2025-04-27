@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,29 +8,47 @@
     <link rel="stylesheet" href="../static/styles.css">
     <link rel="stylesheet" href="../static/dashboard.css">
     <link rel="stylesheet" href="../static/analysis.css">
+    <!-- Add Google Fonts for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
-<!-- White flowers floating (keeping the design elements consistent) -->
-<img src="path-to-your-white-flowers.png" alt="White Flowers Left" class="white-flowers-left">
-<img src="path-to-your-white-flowers.png" alt="White Flowers Right" class="white-flowers-right">
+
 
 <!-- Navbar -->
 <nav class="navbar">
+    <!-- Flower petals container -->
+    <div class="flower-petals-container"></div>
+
     <div class="logo">
-        <img src="path-to-your-logo.png" alt="Logo" class="logo-img">
-        Skincare Elegance
+        <img src="/static/images/logo.png" alt="Logo" class="logo-img">
+        <span>Skincare Elegance</span>
     </div>
     <div class="nav-links">
         <a href="/dashboard">Dashboard</a>
-        <a href="/analysis" class="active">Analysis</a>
+        <a href="/analysis">Analysis</a>
         <a href="#">Products</a>
-        <a href="#">Recommendations</a>
+        <a href="#">Routine</a>
+        <a href="#" id="signOutLink">Sign Out</a>
         <div class="user-profile">
             <img src="" alt="Profile" class="profile-image">
         </div>
     </div>
 </nav>
+
+<!-- Profile Picture Selection Modal -->
+<div class="login-modal" id="profilePictureModal">
+    <div class="login-content">
+        <span class="close-btn" id="closeProfilePictureModal">&times;</span>
+        <h2>Choose Your Profile Picture</h2>
+        <div class="avatar-grid">
+            <!-- Avatars will be added dynamically via JavaScript -->
+        </div>
+    </div>
+</div>
 
 <div class="analysis-container">
     <h1>Skin Analysis</h1>
@@ -77,6 +96,12 @@
     </div>
 </div>
 
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+<script src="../static/firebase-config.js"></script>
+
+<!-- Application scripts -->
 <script src="../static/app.js"></script>
 <script src="../static/analysis.js"></script>
 
