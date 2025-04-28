@@ -1,8 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
   console.log('DOM fully loaded');
 
+  // Check if Firebase is initialized
+  if (!firebase.apps.length) {
+    console.error('Firebase not initialized');
+    return;
+  }
+
   // Firebase auth reference
   const auth = firebase.auth();
+  console.log('Firebase initialized successfully');
+
 
   // Get UI elements
   const loginBtn = document.getElementById('loginBtn');

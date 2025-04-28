@@ -73,9 +73,30 @@
     </div>
 </div>
 <!-- Firebase SDK -->
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
-<script src="/static/firebase-config.js"></script>
-<script src="/static/app.js"></script>
-<script src="/static/config.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+
+<!-- Load configuration first -->
+<script defer>
+    window.ENV = {
+        FIREBASE_CONFIG: {
+            apiKey: /*[[${FIREBASE_API_KEY}]]*/ '',
+            authDomain: /*[[${FIREBASE_AUTH_DOMAIN}]]*/ '',
+            projectId: /*[[${FIREBASE_PROJECT_ID}]]*/ '',
+            storageBucket: /*[[${FIREBASE_STORAGE_BUCKET}]]*/ '',
+            messagingSenderId: /*[[${FIREBASE_SENDER_ID}]]*/ '',
+            appId: /*[[${FIREBASE_APP_ID}]]*/ '',
+            measurementId: /*[[${FIREBASE_MEASUREMENT_ID}]]*/ ''
+        }
+    };
+</script>
+
+<!-- Initialize Firebase -->
+<script defer>
+    document.addEventListener('DOMContentLoaded', function() {
+        firebase.initializeApp(window.ENV.FIREBASE_CONFIG);
+    });
+</script>
+
+<!-- Load your application script last -->
+<script defer src="/static/app.js"></script>

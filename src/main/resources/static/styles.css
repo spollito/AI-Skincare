@@ -907,3 +907,90 @@ body.modal-open {
   cursor: pointer;
 }
 
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  /* Navbar adjustments */
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .logo-img {
+    width: 30px;
+  }
+
+  /* Hero section adjustments */
+  .hero {
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .hero-text {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-images {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .model-img {
+    max-width: 80%;
+    height: auto;
+  }
+
+  /* Modal adjustments */
+  .login-modal {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .login-content {
+    padding: 20px;
+  }
+
+  .login-content input {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  /* Button adjustments */
+  .btn {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-text p {
+    font-size: 0.9rem;
+  }
+
+  .login-content h2 {
+    font-size: 1.2rem;
+  }
+}
+
+/* Ensure forms are usable on mobile */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="password"] {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    padding: 12px;
+  }
+}
