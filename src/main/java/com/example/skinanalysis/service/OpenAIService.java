@@ -12,8 +12,9 @@ import java.util.Map;
 
 @Service
 public class OpenAIService {
-    @Value("${openai.api.key}")
+    @Value("${OPENAI_API_KEY}")
     private String apiKey;
+
 
     private final WebClient webClient;
 
