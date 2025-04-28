@@ -44,6 +44,7 @@ application-*.properties
 firebase-config.js
 *firebase*config*.js
 firebase.json
+*.jar
 
 
 # Environment variables
